@@ -19,18 +19,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white transition-colors duration-200">
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">🏙️</div>
-            <div class="loading-text">MaVille</div>
-            <div class="loading-bar-container">
-                <div class="loading-bar"></div>
-            </div>
-            <div class="loading-percentage" id="loading-percentage">0%</div>
-        </div>
-    </div>
-
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
         <!-- Header -->
         <header class="sticky top-0 z-50 flex items-center bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm p-4 border-b border-gray-100 dark:border-white/5 justify-between">
@@ -158,6 +146,132 @@
                             </div>
                         </div>
                     </article>
+                    <!-- Additional Local News -->
+                    <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-card-light dark:bg-card-dark shadow-card transition-all hover:shadow-lg card-hover">
+                        <div class="relative w-full aspect-video overflow-hidden">
+                            <div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://placehold.co/600x400/064E3B/white?text=Photo");'></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wide shadow-sm">Travaux</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-4 gap-3">
+                            <div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Réfection du Boulevard de la Paix</h3>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-relaxed line-clamp-2">La réfection de la chaussée avance sur le tronçon nord du Boulevard de la Paix, avec reprise des trottoirs et amélioration du drainage. Travaux coordonnés par la Mairie de Bingerville.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Source : Mairie de Bingerville</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-white/5 mt-1">
+                                <span class="text-text-secondary text-xs font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">schedule</span> Il y a 3h
+                                </span>
+                                <button class="flex items-center gap-1 text-primary-dark dark:text-primary text-sm font-bold hover:underline">
+                                    Lire la suite
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-card-light dark:bg-card-dark shadow-card transition-all hover:shadow-lg card-hover">
+                        <div class="relative w-full aspect-video overflow-hidden">
+                            <div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://placehold.co/600x400/064E3B/white?text=Photo");'></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide shadow-sm">Santé</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-4 gap-3">
+                            <div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Vaccination mobile au Marché central</h3>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-relaxed line-clamp-2">Une équipe mobile propose des vaccinations gratuites cette semaine au Marché central pour faciliter l'accès des habitants. Les centres locaux complètent l'opération.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Source : Direction régionale de la Santé</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-white/5 mt-1">
+                                <span class="text-text-secondary text-xs font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">schedule</span> Hier
+                                </span>
+                                <button class="flex items-center gap-1 text-primary-dark dark:text-primary text-sm font-bold hover:underline">
+                                    Lire la suite
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-card-light dark:bg-card-dark shadow-card transition-all hover:shadow-lg card-hover">
+                        <div class="relative w-full aspect-video overflow-hidden">
+                            <div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://placehold.co/600x400/064E3B/white?text=Photo");'></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-wide shadow-sm">Éducation</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-4 gap-3">
+                            <div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Rénovation du Lycée moderne</h3>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-relaxed line-clamp-2">Des travaux de réfection des salles et de mise aux normes électriques débutent au Lycée moderne pour la rentrée prochaine. Les classes resteront ouvertes avec planning aménagé.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Source : Lycée moderne de Bingerville</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-white/5 mt-1">
+                                <span class="text-text-secondary text-xs font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">schedule</span> Il y a 2 jours
+                                </span>
+                                <button class="flex items-center gap-1 text-primary-dark dark:text-primary text-sm font-bold hover:underline">
+                                    Lire la suite
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-card-light dark:bg-card-dark shadow-card transition-all hover:shadow-lg card-hover">
+                        <div class="relative w-full aspect-video overflow-hidden">
+                            <div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://placehold.co/600x400/064E3B/white?text=Photo");'></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wide shadow-sm">Sécurité</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-4 gap-3">
+                            <div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Patrouilles nocturnes renforcées</h3>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-relaxed line-clamp-2">La Gendarmerie intensifie les patrouilles nocturnes sur les axes entre le centre-ville et les quartiers riverains après plusieurs signalements de vols. Présence accrue les week-ends.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Source : Gendarmerie de Bingerville</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-white/5 mt-1">
+                                <span class="text-text-secondary text-xs font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">schedule</span> Il y a 5h
+                                </span>
+                                <button class="flex items-center gap-1 text-primary-dark dark:text-primary text-sm font-bold hover:underline">
+                                    Lire la suite
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-card-light dark:bg-card-dark shadow-card transition-all hover:shadow-lg card-hover">
+                        <div class="relative w-full aspect-video overflow-hidden">
+                            <div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://placehold.co/600x400/064E3B/white?text=Photo");'></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide shadow-sm">Environnement</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-4 gap-3">
+                            <div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Grand nettoyage de la Rivière Bia</h3>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-relaxed line-clamp-2">Un collectif citoyen, appuyé par la Mairie, organise une opération de curage et collecte des déchets le long de la Rivière Bia pour prévenir les inondations et améliorer la qualité de l'eau.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Source : Collectif Propreté & Mairie de Bingerville</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-white/5 mt-1">
+                                <span class="text-text-secondary text-xs font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">schedule</span> Il y a 3 jours
+                                </span>
+                                <button class="flex items-center gap-1 text-primary-dark dark:text-primary text-sm font-bold hover:underline">
+                                    Lire la suite
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
                     <!-- Load More Button -->
                     <button class="w-full py-3 mt-2 text-text-secondary text-sm font-medium border border-dashed border-gray-300 dark:border-white/20 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                         Voir plus d'actualités

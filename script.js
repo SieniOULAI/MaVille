@@ -7,33 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sectionId) showSection(sectionId);
         });
     });
-
-    const loadingScreen = document.getElementById('loading-screen');
-    const loadingPercentage = document.getElementById('loading-percentage');
-    const loadingBar = document.querySelector('.loading-bar');
-
-    let progress = 0;
-    const duration = 5000; // 5 seconds
-    const interval = 50; // Update every 50ms
-    const steps = duration / interval;
-    const increment = 100 / steps;
-
-    const loadingInterval = setInterval(() => {
-        progress += increment;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(loadingInterval);
-            setTimeout(() => {
-                loadingScreen.classList.add('hidden');
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 200);
-        }
-
-        loadingPercentage.textContent = Math.round(progress) + '%';
-        loadingBar.style.width = progress + '%';
-    }, interval);
 });
 
 // Navigation avec animations améliorées
