@@ -1,0 +1,12 @@
+{
+  "name": "maville",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.5.0"
+  }
+}

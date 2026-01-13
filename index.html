@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https:; script-src 'self' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https:;">
     <title>MaVille - PWA Civique</title>
     <meta name="description" content="Application web progressive pour agir ensemble dans votre commune.">
     <meta name="theme-color" content="#13ec92">
@@ -13,42 +14,8 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#13ec92",
-                        "primary-dark": "#0bb870",
-                        "background-light": "#f8fcfa",
-                        "background-dark": "#10221a",
-                        "card-light": "#ffffff",
-                        "card-dark": "#1c3026",
-                        "text-main": "#0d1b16",
-                        "text-secondary": "#4c9a79",
-                    },
-                    fontFamily: {
-                        "display": ["Public Sans", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.375rem",
-                        "md": "0.375rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                        "full": "9999px"
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 0 4px -2px rgba(0, 0, 0, 0.02)',
-                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                    }
-                },
-            },
-        }
-    </script>
+    <!-- Tailwind CSS (précompilé en production) -->
+    <link rel="stylesheet" href="dist/styles.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white transition-colors duration-200">
@@ -103,14 +70,14 @@
                 <!-- Quick Actions -->
                 <div class="px-4 py-4">
                     <div class="grid grid-cols-2 gap-3">
-                        <button class="flex flex-col items-center justify-center p-4 bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-lg transition-all card-hover group" onclick="showSection('signalement')">
+                        <button data-section="signalement" class="flex flex-col items-center justify-center p-4 bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-lg transition-all card-hover group">
                             <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
                                 <span class="material-symbols-outlined text-primary text-2xl">add_a_photo</span>
                             </div>
                             <span class="text-text-main dark:text-white font-semibold text-sm">Signaler</span>
                             <span class="text-text-secondary text-xs">30 secondes</span>
                         </button>
-                        <button class="flex flex-col items-center justify-center p-4 bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-lg transition-all card-hover group" onclick="showSection('sondages')">
+                        <button data-section="sondages" class="flex flex-col items-center justify-center p-4 bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-lg transition-all card-hover group">
                             <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-2 group-hover:bg-blue-500/20 transition-colors">
                                 <span class="material-symbols-outlined text-blue-500 text-2xl">how_to_vote</span>
                             </div>

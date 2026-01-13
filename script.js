@@ -1,5 +1,13 @@
 // Loading Screen
 document.addEventListener('DOMContentLoaded', () => {
+    // Convert data-section buttons to event listeners (replaces inline onclick)
+    document.querySelectorAll('[data-section]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const sectionId = btn.getAttribute('data-section');
+            if (sectionId) showSection(sectionId);
+        });
+    });
+
     const loadingScreen = document.getElementById('loading-screen');
     const loadingPercentage = document.getElementById('loading-percentage');
     const loadingBar = document.querySelector('.loading-bar');
@@ -178,39 +186,7 @@ function saveSignalement(data) {
 function loadSignalements() {
     return JSON.parse(localStorage.getItem('signalements') || '[]');
 }
-
-// Form handling avec améliorations
-const signalementForm = document.getElementById('signalement-form');
-if (signalementForm) {
-    const locationBtn = document.createElement('button');
-    locationBtn.type = 'button';
-    locationBtn.className = 'w-full mt-2 py-2 px-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-2';
-    locationBtn.innerHTML = '<span class="material-symbols-outlined text-sm">location_on</span> Utiliser ma position actuelle';
-    locationBtn.addEventListener('click', getLocation);
-    signalementForm.querySelector('input[type="text"]').parentNode.appendChild(locationBtn);
-
-    signalementForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(signalementForm);
-        const data = {
-            type: formData.get('select'),
-            description: formData.get('textarea'),
-            lieu: formData.get('text'),
-            photo: formData.get('file')?.name || null
-        };
-
-        const count = saveSignalement(data);
-        alert(`Signalement #${count} envoyé avec succès !`);
-
-        // Animation de succès
-        const submitBtn = signalementForm.querySelector('button[type="submit"]');
-        submitBtn.innerHTML = '<span class="loading"></span> Envoi...';
-        setTimeout(() => {
-            submitBtn.innerHTML = 'Envoyer le signalement';
-            signalementForm.reset();
-        }, 2000);
-    });
-}
+// (Le traitement du formulaire est géré plus bas avec un gestionnaire complet)
 
 // Sondages interactifs
 function handleVote(pollId, option) {

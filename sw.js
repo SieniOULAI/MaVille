@@ -1,63 +1,55 @@
-const CACHE_NAME = 'mavile-v1.1';
-const urlsToCache = [
+const CACHE_NAME = 'maville-v1.2';
+const PRECACHE_URLS = [
     '/',
     '/index.html',
+    '/offline.html',
     '/style.css',
     '/script.js',
-    '/manifest.json',
-    'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap',
-    'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap',
-    'https://cdn.tailwindcss.com?plugins=forms,container-queries'
+    '/manifest.json'
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => {
-                console.log('Opened cache');
-                return cache.addAll(urlsToCache);
-            })
+            .then(cache => cache.addAll(PRECACHE_URLS))
     );
     self.skipWaiting();
 });
 
+// Runtime caching with simple strategies:
+// - Navigation requests: network-first, fallback to /offline.html
+// - Other requests: cache-first with background update
 self.addEventListener('fetch', event => {
+    const request = event.request;
+
+    // Only handle GET requests
+    if (request.method !== 'GET') return;
+
+    if (request.mode === 'navigate') {
+        event.respondWith(
+            fetch(request).then(networkResponse => {
+                // update cache
+                caches.open(CACHE_NAME).then(cache => cache.put(request, networkResponse.clone()));
+                return networkResponse;
+            }).catch(() => caches.match('/offline.html'))
+        );
+        return;
+    }
+
+    // For other requests, try cache first, then network and update cache
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                // Cache hit - return response
-                if (response) {
-                    return response;
+        caches.match(request).then(cachedResponse => {
+            const networkFetch = fetch(request).then(networkResponse => {
+                // cache opaque responses too (e.g., CDN fonts) but guard by status
+                if (networkResponse && (networkResponse.status === 200 || networkResponse.type === 'opaque')) {
+                    caches.open(CACHE_NAME).then(cache => cache.put(request, networkResponse.clone()));
                 }
+                return networkResponse;
+            }).catch(() => null);
 
-                return fetch(event.request).then(
-                    response => {
-                        // Check if we received a valid response
-                        if(!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-
-                        // IMPORTANT: Clone the response. A response is a stream
-                        // and because we want the browser to consume the response
-                        // as well as the cache consuming the response, we need
-                        // to clone it so we have two streams.
-                        const responseToCache = response.clone();
-
-                        caches.open(CACHE_NAME)
-                            .then(cache => {
-                                cache.put(event.request, responseToCache);
-                            });
-
-                        return response;
-                    }
-                );
-            })
-            .catch(() => {
-                // Return offline page or cached version
-                if (event.request.destination === 'document') {
-                    return caches.match('/index.html');
-                }
-            })
+            // return cached if present, else network
+            return cachedResponse || networkFetch;
+        })
     );
 });
 
@@ -67,7 +59,6 @@ self.addEventListener('activate', event => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (cacheName !== CACHE_NAME) {
-                        console.log('Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
